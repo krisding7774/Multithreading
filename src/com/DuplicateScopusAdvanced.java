@@ -66,14 +66,14 @@ public class DuplicateScopusAdvanced {
 
 //				透過getHeaderField查看HTTP的連線狀況，如果是404、405、500則忽略不會進行讀寫
 				if (conn.getHeaderField(0).equals("HTTP/1.1 200 OK")) {
-					BufferedReader bufferedRead = new BufferedReader(
-							new InputStreamReader(conn.getInputStream(), Charset.forName("UTF-8")));
+					BufferedReader bufferedRead = new BufferedReader(new InputStreamReader(conn.getInputStream(), Charset.forName("UTF-8")));
 //					將讀出來的json格式轉換成obj，方便獲取img資料
 					JSONObject obj = JSON.parseObject(bufferedRead.readLine());
 					result = sql.replace("[isbn]", obj.getString("img")).replace("[mid]", api.getKey());
-					System.out.println("API No." + +count++ + " is running...");
+					System.out.println("API No." + count++ + " is running...");
 				} else {
 					result = sql2.replace("[mid]", api.getKey());
+					System.err.println("API No." + count++ + "have question...");
 				}
 				list.add(result);
 			}
