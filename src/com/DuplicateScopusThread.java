@@ -86,14 +86,12 @@ public class DuplicateScopusThread extends Thread {
 				}
 				list.add(result);
 			}
-
 //			寫入路徑以及檔案名稱
 			Path path = Paths.get(this.root, this.thread + ".sql");
 //			編碼格式為UTF-8
 			Charset cs = Charset.forName("UTF-8");
 //			在指定路徑輸出修改後網址，並設定編碼格式為UTF-8
 			Files.write(path, list, cs, WRITE, CREATE);
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
